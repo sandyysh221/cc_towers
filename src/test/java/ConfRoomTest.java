@@ -1,0 +1,2 @@
+public class ConfRoomTest {
+}
