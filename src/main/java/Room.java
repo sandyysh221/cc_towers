@@ -4,24 +4,31 @@ public abstract class Room {
 
     private int capacity;
 
-    private ArrayList<Guest> guest;
+    private ArrayList<Guest> guests;
 
     public Room(int capacity){
         this.capacity = capacity;
-        this.guest = new ArrayList<Guest>();
+        this.guests = new ArrayList<>();
     }
 
     public int getCapacity() {
         return capacity;
     }
 
-    public int getGuestCount() {
-        return this.guest.size();
-    }
-
-    public void addGuest (Guest guest){
-        this.guest.add(guest);
+    public int guestCount() {
+        return guests.size();
     }
 
 
+    public void addGuest(Guest guest) {
+        guests.add(guest);
+    }
+
+    public void removeGuests() {
+        guests.clear();
+    }
+
+    public boolean isGuestInRoom(Guest guest) {
+        return guests.contains(guest);
+    }
 }

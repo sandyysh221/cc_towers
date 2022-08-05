@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class BedroomTest {
 
@@ -12,7 +12,7 @@ public class BedroomTest {
     @Before
     public void before() {
         ArrayList<Guest> guest = new ArrayList<>();
-        bedroom = new Bedroom(2, RoomType.DOUBLE, 12);
+        bedroom = new Bedroom(RoomType.DOUBLE, 12);
 
     }
 
@@ -33,12 +33,36 @@ public class BedroomTest {
 
     @Test
     public void canGetGuestCount() {
-        assertEquals(0, bedroom.getGuestCount());
+        assertEquals(0, bedroom.guestCount());
     }
 
     @Test
-    public void hasGotArrayOfGuests () {
-        assertEquals(0, room.getGuests());
+    public void canAddGuest() {
+        Guest john = new Guest("John", 25);
+        bedroom.addGuest(john);
+        assertEquals(1, bedroom.guestCount());
     }
 
+    @Test
+    public void canRemoveGuests() {
+        Guest john = new Guest("John", 25);
+        bedroom.addGuest(john);
+        bedroom.removeGuests();
+        assertEquals(0, bedroom.guestCount());
+    }
+
+    @Test
+    public void canCheckIfGuestIsInRoom() {
+        Guest john = new Guest("John", 25);
+        bedroom.addGuest(john);
+        assertTrue(bedroom.isGuestInRoom(john));
+    }
+
+    @Test
+    public void canCheckIfGuestIsNotInRoom() {
+        Guest john = new Guest("John", 25);
+        Guest jarrod = new Guest("Jarrod", 25);
+        bedroom.addGuest(jarrod);
+        assertFalse(bedroom.isGuestInRoom(john));
+    }
 }
